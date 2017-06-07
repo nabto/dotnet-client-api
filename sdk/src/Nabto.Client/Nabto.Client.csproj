@@ -1,19 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
+    <TargetFrameworks>netstandard1.5</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>Nabto Aps</Company>
     <Authors>Nabto</Authors>
   </PropertyGroup>
 
+    <ItemGroup>
+      
+      <Content Include="..\..\..\runtimes\win\native\nabto_client_api.dll">
+        <PackagePath>runtimes/win/native/nabto_client_api.dll</PackagePath>
+        <Pack>true</Pack>
+      </Content>
+      <Content Include="..\..\..\readme.txt">
+        <PackagePath>readme.txt</PackagePath>
+        <Pack>true</Pack>
+      </Content>
+
+    </ItemGroup>      
+  
   <ItemGroup>
     <Compile Remove="QueryModel\query_model.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
