@@ -60,7 +60,7 @@ namespace Nabto.Client.Interop
 
         public Platforms Platform
         {
-            get { return Platform; }
+            get { return platform; }
         }
     }
 }
