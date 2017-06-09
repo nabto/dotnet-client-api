@@ -15,13 +15,7 @@ namespace Nabto.Client.Interop
 
 		PlatformAdapter()
 		{
-#if NETFX_CORE
-			concretePlatformAdapter = new WinRT.WinRTPlatformAdapter();
-#elif WINDOWS_PHONE
-			concretePlatformAdapter = new WindowsPhone.WindowsPhonePlatformAdapter();
-#else
 			concretePlatformAdapter = new Win32.Win32PlatformAdapter();
-#endif
 		}
 
 		#region The session API - synchronous

@@ -7,9 +7,7 @@ namespace NabtoExample
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hi");
             NabtoClient nabto = new NabtoClient(true);
-            Console.WriteLine("hi2");
             using (Session session = nabto.CreateSession("guest", "123456"))
             {
                 string url = "nabto://weather.u.nabto.net/wind_speed.json?";

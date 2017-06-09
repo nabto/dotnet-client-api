@@ -8,11 +8,7 @@ namespace Nabto
 	/// <summary>
 	/// Provides wrapper methods for writing to the debug console.
 	/// </summary>
-#if DEBUG
-	public class Log
-#else
 	class Log
-#endif
 	{
 		/// <summary>
 		/// 

@@ -7,6 +7,8 @@
     <Company>Nabto Aps</Company>
     <Authors>Nabto</Authors>
     <Version>1.0.3-alpha2</Version>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
   </PropertyGroup>
 
     <ItemGroup>
