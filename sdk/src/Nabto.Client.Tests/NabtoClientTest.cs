@@ -1,9 +1,9 @@
 using Nabto.Client;
-using NUnit.Framework;
+using Xunit;
 
 namespace Nabto.Client.Tests {
     public class NabtoClientTest {
-        [Test]
+        [Fact]
         public void Constructor_Test()
         {
             NabtoClient nabto = new NabtoClient();
