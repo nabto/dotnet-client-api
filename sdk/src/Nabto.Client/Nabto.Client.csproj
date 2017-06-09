@@ -6,19 +6,27 @@
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>Nabto Aps</Company>
     <Authors>Nabto</Authors>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
     <ItemGroup>
       
-      <Content Include="..\..\..\runtimes\win\native\nabto_client_api.dll">
+      <Content Include="..\..\..\nabto-libs\win32-static\bin\nabto_client_api.dll">
         <PackagePath>runtimes/win/native/nabto_client_api.dll</PackagePath>
+        <Pack>true</Pack>
+      </Content>
+      <Content Include="..\..\..\nabto-libs\win64-static\bin\nabto_client_api.dll">
+        <PackagePath>runtimes/win-x64/native/nabto_client_api.dll</PackagePath>
         <Pack>true</Pack>
       </Content>
       <Content Include="..\..\..\readme.txt">
         <PackagePath>readme.txt</PackagePath>
         <Pack>true</Pack>
       </Content>
-
+      <Content Include="Nabto.Client.targets">
+        <PackagePath>build/net45/</PackagePath>
+        <Pack>true</Pack>
+      </Content>
     </ItemGroup>      
   
   <ItemGroup>

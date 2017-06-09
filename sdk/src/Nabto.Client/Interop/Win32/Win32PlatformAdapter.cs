@@ -30,23 +30,15 @@ namespace Nabto.Client.Interop.Win32
                 path = "x86";
             }
 
-            //if (PlatformInformation.Bits == PlatformBits.Bits32)
-            //{
-            //	path = "x86";
-            //}
-            //else
-            //{
-            //	path = "x64";
-            //}
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+            
+            if (NativeLibrary.Get().Platform == NativeLibrary.Platforms.Windows) {
                 path = Path.Combine(path, "nabto_client_api.dll");
-            } else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
-
+            } else if (NativeLibrary.Get().Platform == NativeLibrary.Platforms.Linux) {
                 path = Path.Combine(path, "nabto_client_api.so");
-            } else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
+            } else if (NativeLibrary.Get().Platform == NativeLibrary.Platforms.OSX) {
                 path = Path.Combine(path, "nabto_client_api.dylib");
             } else {
-					Debug.WriteLine("Platform unknown!");
+			    Debug.WriteLine("Platform unknown!");
 			}
 
 			var dir = Path.GetDirectoryName(NativeLibrary.GetAssemblyPath());

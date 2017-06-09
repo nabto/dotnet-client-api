@@ -31,7 +31,7 @@ namespace Nabto.Client
 
 		bool started;
 		string _applicationName;
-		string _homeDirectory;
+        string _homeDirectory = "";
 		readonly List<Session> sessions = new List<Session>();
 
 		/// <summary>
@@ -271,30 +271,12 @@ namespace Nabto.Client
 				return;
 			}
 
-			//try
-			//{
-			//if a custom application name has been set pass it to the native client API
 			if (_applicationName != null)
 			{
 				PlatformAdapter.Instance.nabtoSetApplicationName(_applicationName);
 			}
 
-#if NETFX_CORE
-			PlatformAdapter.Instance.nabtoStartup(HomeDirectory); // Windows.Storage.ApplicationData.Current.LocalFolder.Path + "/Nabto");
-#elif WINDOWS_PHONE
 			PlatformAdapter.Instance.nabtoStartup(HomeDirectory);
-#else
-			PlatformAdapter.Instance.nabtoStartup(HomeDirectory);
-#endif
-			//}
-			//catch (NabtoClientException)
-			//{
-			//	throw;
-			//}
-			//catch (Exception ex)
-			//{
-			//	throw new NabtoClientException("Unable to load native Nabto client library", ex);
-			//}
 
 			started = true;
 		}
