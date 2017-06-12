@@ -5,9 +5,6 @@
     <Version>1.0.0-alpha</Version>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../Nabto.Client/Nabto.Client.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Nabto.Client.Native" Version="1.0.6" />
+    <ProjectReference Include="../NabtoClient/NabtoClient.csproj" />
   </ItemGroup>
 </Project>
