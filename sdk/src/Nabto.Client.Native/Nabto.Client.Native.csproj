@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.1</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>Nabto Aps</Company>
+    <Authors>Nabto</Authors>
+    <Version>3.0.15</Version>
+	<IncludeBuildOutput>false</IncludeBuildOutput>
+  </PropertyGroup>
+  <ItemGroup>
+  	
+    <Content Include="..\..\..\nabto-libs\win32-static\bin\nabto_client_api.dll">
+      <PackagePath>runtimes/win/native/nabto_client_api.dll</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="..\..\..\nabto-libs\win64-static\bin\nabto_client_api.dll">
+      <PackagePath>runtimes/win-x64/native/nabto_client_api.dll</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="..\..\..\nabto-libs\linux64\lib\libnabto_client_api.so">
+      <PackagePath>runtimes/linux-x64/native/libnabto_client_api.so</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="..\..\..\nabto-libs\mac64\lib\libnabto_client_api.dylib">
+      <PackagePath>runtimes/osx-x64/native/libnabto_client_api.dylib</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+	<Content Include="..\..\..\nabto-libs\share\**\*.*">
+	  <PackagePath>content/share/%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+	  <Pack>true</Pack>
+	</Content>
+	<Content Include="Nabto.Client.Native.targets">
+	  <PackagePath>build/</PackagePath>
+	  <Pack>true</Pack>
+	</Content>
+  </ItemGroup>      
+</Project>
