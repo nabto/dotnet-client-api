@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>Nabto Aps</Company>
     <Authors>Nabto</Authors>
-    <Version>3.0.15</Version>
+	<Description>Native Nabto client libraries</Description>
+	<Title>Native Nabto Client Libraries</Title>
+    <Version>3.0.15-alpha</Version>
 	<IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <ItemGroup>
@@ -31,7 +33,7 @@
 	  <PackagePath>content/share/%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
 	  <Pack>true</Pack>
 	</Content>
-	<Content Include="Nabto.Client.Native.targets">
+	<Content Include="NabtoClientNative.targets">
 	  <PackagePath>build/</PackagePath>
 	  <Pack>true</Pack>
 	</Content>
