@@ -14,10 +14,6 @@ namespace Nabto.Client.Interop.Win32
 {
 	class Win32PlatformAdapter : IPlatformAdapter
 	{
-		//[DllImport("Kernel32.dll")]
-		//extern static IntPtr LoadLibrary(string path);
-
-		IntPtr nabtoClientApiLibraryHandle;
 		Win32InteropAdapter interopAdapter;
 
         public Win32PlatformAdapter()
