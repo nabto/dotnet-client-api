@@ -6,54 +6,22 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Nabto.Client.Interop.Win32
 {
 	class Win32PlatformAdapter : IPlatformAdapter
 	{
-		[DllImport("Kernel32.dll")]
-		extern static IntPtr LoadLibrary(string path);
+		//[DllImport("Kernel32.dll")]
+		//extern static IntPtr LoadLibrary(string path);
 
 		IntPtr nabtoClientApiLibraryHandle;
 		Win32InteropAdapter interopAdapter;
 
         public Win32PlatformAdapter()
         {
-            string path;
-
-            if (NativeLibrary.Is64Bit)
-            {
-                path = "x64";
-            }
-            else
-            {
-                path = "x86";
-            }
-
-            
-            if (NativeLibrary.Get().Platform == NativeLibrary.Platforms.Windows) {
-                path = Path.Combine(path, "nabto_client_api.dll");
-            } else if (NativeLibrary.Get().Platform == NativeLibrary.Platforms.Linux) {
-                path = Path.Combine(path, "nabto_client_api.so");
-            } else if (NativeLibrary.Get().Platform == NativeLibrary.Platforms.OSX) {
-                path = Path.Combine(path, "nabto_client_api.dylib");
-            } else {
-			    Debug.WriteLine("Platform unknown!");
-			}
-
-			var dir = Path.GetDirectoryName(NativeLibrary.GetAssemblyPath());
-			path = Path.Combine(dir, path);
-
-			if (File.Exists(path))
-			{
-				Debug.WriteLine(string.Format("Preloading platform specific native library '{0}'.", path));
-				nabtoClientApiLibraryHandle = LoadLibrary(path); // load library into memory so this will be used later on when referencing the dll
-			}
-			else
-			{
-				Debug.WriteLine(string.Format("Platform specific native library '{0}' not found - using default.", path));
-			}
-
 			interopAdapter = new Win32InteropAdapter();
 		}
 
