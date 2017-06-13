@@ -9,7 +9,6 @@ namespace NabtoExample
         {
             //TextWriterTraceListener writer = new TextWriterTraceListener(System.Console.Out);
             //Debug.Listeners.Add(writer);
-            Debug.WriteLine("foo");
             NabtoClient nabto = new NabtoClient();
             using (Session session = nabto.CreateSession("guest", "123456"))
             {

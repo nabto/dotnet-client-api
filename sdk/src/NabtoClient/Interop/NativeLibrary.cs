@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace Nabto.Client.Interop
 {
@@ -52,15 +53,33 @@ namespace Nabto.Client.Interop
         {
             get { return IntPtr.Size == 8; }
         }
-        public static string GetAssemblyPath()
+        public static string GetAssemblyDirectory()
         {
             var assembly = typeof(NativeLibrary).GetTypeInfo().Assembly;
-            return assembly.Location;
+            return Path.GetDirectoryName(assembly.Location);
         }
 
         public Platforms Platform
         {
             get { return platform; }
+        }
+
+        public static string GetStaticResourceDir()
+        {
+            var assemblyPath = GetAssemblyDirectory();
+
+            if (File.Exists(Path.Combine(assemblyPath, "share/nabto/roots/ca.crt"))) {
+                // Available in share beside <dll>
+                return Path.Combine(assemblyPath, "share/nabto");
+            } else if (File.Exists(Path.Combine(assemblyPath, "../../../share/nabto/roots/ca.crt"))) {
+                // Available in share beside dll in runtimes/<rid>/native/<dll>
+                return Path.Combine(assemblyPath, "../../../share/nabto");
+            } else if (File.Exists(Path.Combine(assemblyPath, "../../../content/share/nabto/roots/ca.crt"))) {
+                // Available in content/share beside runtimes/<rid>/native/<dll> in nuget package
+                return Path.Combine(assemblyPath, "../../../content/share/nabto");
+            } else {
+                return null;
+            }
         }
     }
 }

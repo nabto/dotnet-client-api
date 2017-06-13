@@ -51,6 +51,9 @@ namespace Nabto.Client
             {
                 throw new NabtoClientException(NabtoStatus.Failed, "Only one instance of NabtoClient may exist in a process.");
             }
+
+            InitStaticResourceDir();
+            
             if (callStartup)
             {
                 Startup();
@@ -240,6 +243,7 @@ namespace Nabto.Client
         */
         #endregion
 
+        
         /// <summary>
         /// Starts the client API.
         /// Startup is performed automatically during normal usage and only needs to be called if <see cref="Shutdown"/> has been called.
@@ -546,6 +550,14 @@ namespace Nabto.Client
             lock (sessions)
             {
                 sessions.Remove(session);
+            }
+        }
+
+        private void InitStaticResourceDir() {
+            var resourceDir = Interop.NativeLibrary.GetStaticResourceDir();
+            
+            if (resourceDir != null) {
+                PlatformAdapter.Instance.nabtoSetStaticResourceDir(resourceDir);
             }
         }
 
