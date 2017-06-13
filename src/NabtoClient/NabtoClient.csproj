@@ -12,7 +12,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Content Include="..\..\..\readme.txt">
+    <Content Include="readme.txt">
       <PackagePath>readme.txt</PackagePath>
       <Pack>true</Pack>
     </Content>
