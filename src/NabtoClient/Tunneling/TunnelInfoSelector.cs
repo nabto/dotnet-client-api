@@ -1,9 +1,9 @@
 ﻿namespace Nabto.Client.Tunneling
 {
-	enum TunnelInfoSelector
-	{
-		Version,
-		Status,
-		LastError
-	}
+    enum TunnelInfoSelector
+    {
+        Version,
+        Status,
+        LastError
+    }
 }

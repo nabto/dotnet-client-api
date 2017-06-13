@@ -4,23 +4,23 @@ using System;
 
 namespace Nabto.Client.Tunneling
 {
-	class SafeTunnelHandle : NabtoSafeHandle
-	{
-		public SafeTunnelHandle(IntPtr preexistingHandle)
-			: base(preexistingHandle)
-		{ }
+    class SafeTunnelHandle : NabtoSafeHandle
+    {
+        public SafeTunnelHandle(IntPtr preexistingHandle)
+            : base(preexistingHandle)
+        { }
 
-		protected override bool ReleaseHandle()
-		{
-			try
-			{
-				PlatformAdapter.Instance.nabtoTunnelClose(handle);
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
-	}
+        protected override bool ReleaseHandle()
+        {
+            try
+            {
+                PlatformAdapter.Instance.nabtoTunnelClose(handle);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
 }

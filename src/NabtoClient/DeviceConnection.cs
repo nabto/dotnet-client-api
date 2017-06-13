@@ -1,4 +1,4 @@
-﻿using Nabto.Client.Streaming;
+using Nabto.Client.Streaming;
 using Nabto.Client.Tunneling;
 using System;
 using System.Collections.Generic;
@@ -6,301 +6,301 @@ using System.Runtime.InteropServices;
 
 namespace Nabto.Client
 {
-	/// <summary>
-	/// Represents a connection to a device.
-	/// </summary>
-	[ComVisible(true)]
-	public partial class DeviceConnection : IDisposable
-	{
-		internal readonly Session Owner;
-		internal readonly string DeviceId;
-		internal readonly bool CreatedImplicitly;
+    /// <summary>
+    /// Represents a connection to a device.
+    /// </summary>
+    [ComVisible(true)]
+    public partial class DeviceConnection : IDisposable
+    {
+        internal readonly Session Owner;
+        internal readonly string DeviceId;
+        internal readonly bool CreatedImplicitly;
 
-		readonly List<DeviceStream> deviceStreams = new List<DeviceStream>();
-		readonly List<Tunnel> tunnels = new List<Tunnel>();
+        readonly List<DeviceStream> deviceStreams = new List<DeviceStream>();
+        readonly List<Tunnel> tunnels = new List<Tunnel>();
 
-		DeviceConnection(Session owner, string deviceId, bool createdImplicitly)
-		{
-			this.Owner = owner;
-			this.DeviceId = deviceId;
-			this.CreatedImplicitly = createdImplicitly;
+        DeviceConnection(Session owner, string deviceId, bool createdImplicitly)
+        {
+            this.Owner = owner;
+            this.DeviceId = deviceId;
+            this.CreatedImplicitly = createdImplicitly;
 
-			Log.Write("DeviceConnection.DeviceConnection({0}, {1}, {2})", owner, deviceId, createdImplicitly ? "Implicit" : "Explicit");
-		}
+            Log.Write("DeviceConnection.DeviceConnection({0}, {1}, {2})", owner, deviceId, createdImplicitly ? "Implicit" : "Explicit");
+        }
 
-		internal static DeviceConnection Create(Session owner, string deviceId, bool createdImplicitly)
-		{
-			if (deviceId == null)
-			{
-				throw new ArgumentNullException("deviceId");
-			}
+        internal static DeviceConnection Create(Session owner, string deviceId, bool createdImplicitly)
+        {
+            if (deviceId == null)
+            {
+                throw new ArgumentNullException("deviceId");
+            }
 
-			var instance = new DeviceConnection(owner, deviceId, createdImplicitly);
+            var instance = new DeviceConnection(owner, deviceId, createdImplicitly);
 
-			owner.Register(instance);
+            owner.Register(instance);
 
-			return instance;
-		}
+            return instance;
+        }
 
-		#region FetchUrl
-
-		/// <summary>
-		/// Fetch the specified resource from the device.
-		/// </summary>
-		/// <param name="url">The URL of the resource relative to the device.</param>
-		/// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
-		/// <returns>The data fetched from the device.</returns>
-		public byte[] FetchUrl(string url, bool appendSessionToken = true)
-		{
-			return Owner.FetchUrl(GetAbsoluteUrl(url), appendSessionToken);
-		}
-
-		/// <summary>
-		/// Fetch the specified resource from the device and return the MIME type of the response.
-		/// </summary>
-		/// <param name="url">The URL of the resource relative to the device.</param>
-		/// <param name="mimeType">The MIME type of the reponse.</param>
-		/// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
-		/// <returns>The data fetched from the device.</returns>
-		public byte[] FetchUrl(string url, out string mimeType, bool appendSessionToken = true)
-		{
-			return Owner.FetchUrl(GetAbsoluteUrl(url), out mimeType, appendSessionToken);
-		}
-
-		/// <summary>
-		/// Fetch the specified resource from the device.
-		/// </summary>
-		/// <param name="url">The URL of the resource relative to the device.</param>
-		/// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
-		/// <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
-		public string FetchUrlAsString(string url, bool appendSessionToken = true)
-		{
-			return Owner.FetchUrlAsString(GetAbsoluteUrl(url), appendSessionToken);
-		}
-
-		/// <summary>
-		/// Fetch the specified resource from the device and return the MIME type of the response.
-		/// </summary>
-		/// <param name="url">The URL of the resource relative to the device.</param>
-		/// <param name="mimeType">The MIME type of the reponse.</param>
-		/// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
-		/// <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
-		public string FetchUrlAsString(string url, out string mimeType, bool appendSessionToken = true)
-		{
-			return Owner.FetchUrlAsString(GetAbsoluteUrl(url), out mimeType, appendSessionToken);
-		}
+        #region FetchUrl
 
         /// <summary>
-		/// Invoke RPC function at specified URL.
-		/// </summary>
-		/// <param name="url">The URL of the resource relative to the device.</param>
-		/// <returns>The JSON string with device response </returns>
-		public string RpcInvoke(string url)
-		{
-			return Owner.RpcInvoke(GetAbsoluteUrl(url));
-		}
+        /// Fetch the specified resource from the device.
+        /// </summary>
+        /// <param name="url">The URL of the resource relative to the device.</param>
+        /// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+        /// <returns>The data fetched from the device.</returns>
+        public byte[] FetchUrl(string url, bool appendSessionToken = true)
+        {
+            return Owner.FetchUrl(GetAbsoluteUrl(url), appendSessionToken);
+        }
 
-		#endregion
+        /// <summary>
+        /// Fetch the specified resource from the device and return the MIME type of the response.
+        /// </summary>
+        /// <param name="url">The URL of the resource relative to the device.</param>
+        /// <param name="mimeType">The MIME type of the reponse.</param>
+        /// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+        /// <returns>The data fetched from the device.</returns>
+        public byte[] FetchUrl(string url, out string mimeType, bool appendSessionToken = true)
+        {
+            return Owner.FetchUrl(GetAbsoluteUrl(url), out mimeType, appendSessionToken);
+        }
 
-		/// <summary>
-		/// Creates a new stream to the device.
-		/// </summary>
-		/// <returns>The newly created stream.</returns>
-		public DeviceStream CreateStream()
-		{
-			return DeviceStream.Create(this);
-		}
+        /// <summary>
+        /// Fetch the specified resource from the device.
+        /// </summary>
+        /// <param name="url">The URL of the resource relative to the device.</param>
+        /// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+        /// <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
+        public string FetchUrlAsString(string url, bool appendSessionToken = true)
+        {
+            return Owner.FetchUrlAsString(GetAbsoluteUrl(url), appendSessionToken);
+        }
 
-		/// <summary>
-		/// Creates a new stream to the device and initializes the specified service.
-		/// </summary>
-		/// <param name="service">The service to initialize.</param>
-		/// <param name="serviceParameters">Optional initialization parameters for the service.</param>
-		/// <returns>The newly created stream.</returns>
-		public DeviceStream CreateStream(StreamService service, string serviceParameters = null)
-		{
-			return DeviceStream.Create(this, service, serviceParameters);
-		}
+        /// <summary>
+        /// Fetch the specified resource from the device and return the MIME type of the response.
+        /// </summary>
+        /// <param name="url">The URL of the resource relative to the device.</param>
+        /// <param name="mimeType">The MIME type of the reponse.</param>
+        /// <param name="appendSessionToken">Indicates whether the session token should automatically be appended if missing in the url.</param>
+        /// <returns>The data fetched from the device encoded as a string using the current DefaultEncoding.</returns>
+        public string FetchUrlAsString(string url, out string mimeType, bool appendSessionToken = true)
+        {
+            return Owner.FetchUrlAsString(GetAbsoluteUrl(url), out mimeType, appendSessionToken);
+        }
 
-		/// <summary>
-		/// Creates a new stream to the device and initializes the specified service.
-		/// </summary>
-		/// <param name="serviceConfiguration">The service to initialize and any configuration parameters needed during initialization.</param>
-		/// <returns>The newly created stream.</returns>
-		public DeviceStream CreateStream(string serviceConfiguration)
-		{
-			return DeviceStream.Create(this, serviceConfiguration);
-		}
+        /// <summary>
+        /// Invoke RPC function at specified URL.
+        /// </summary>
+        /// <param name="url">The URL of the resource relative to the device.</param>
+        /// <returns>The JSON string with device response </returns>
+        public string RpcInvoke(string url)
+        {
+            return Owner.RpcInvoke(GetAbsoluteUrl(url));
+        }
 
-		/// <summary>
-		/// Creates a tunnel to the specified device. 
-		/// </summary>
-		/// <param name="localPort">The local TCP port to listen on.</param>
-		/// <param name="remoteHost">The host the remote endpoint establishes a TCP connection to.</param>
-		/// <param name="remotePort">The TCP port to connect to on remoteHost.</param>
-		/// <returns>The newly created tunnel.</returns>
-		public Tunnel CreateTunnel(int localPort, string remoteHost, int remotePort)
-		{
-			return Tunnel.Create(this, localPort, DeviceId, remoteHost, remotePort);
-		}
+        #endregion
 
-		///// <summary>
-		///// Closes the device connection.
-		///// </summary>
-		//public void Close()
-		//{
-		//	Dispose();
-		//}
+        /// <summary>
+        /// Creates a new stream to the device.
+        /// </summary>
+        /// <returns>The newly created stream.</returns>
+        public DeviceStream CreateStream()
+        {
+            return DeviceStream.Create(this);
+        }
 
-		#region IDisposable
+        /// <summary>
+        /// Creates a new stream to the device and initializes the specified service.
+        /// </summary>
+        /// <param name="service">The service to initialize.</param>
+        /// <param name="serviceParameters">Optional initialization parameters for the service.</param>
+        /// <returns>The newly created stream.</returns>
+        public DeviceStream CreateStream(StreamService service, string serviceParameters = null)
+        {
+            return DeviceStream.Create(this, service, serviceParameters);
+        }
 
-		bool disposed = false;
+        /// <summary>
+        /// Creates a new stream to the device and initializes the specified service.
+        /// </summary>
+        /// <param name="serviceConfiguration">The service to initialize and any configuration parameters needed during initialization.</param>
+        /// <returns>The newly created stream.</returns>
+        public DeviceStream CreateStream(string serviceConfiguration)
+        {
+            return DeviceStream.Create(this, serviceConfiguration);
+        }
 
-		/// <summary>
-		/// Disposes the device connection.
-		/// </summary>
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        /// <summary>
+        /// Creates a tunnel to the specified device. 
+        /// </summary>
+        /// <param name="localPort">The local TCP port to listen on.</param>
+        /// <param name="remoteHost">The host the remote endpoint establishes a TCP connection to.</param>
+        /// <param name="remotePort">The TCP port to connect to on remoteHost.</param>
+        /// <returns>The newly created tunnel.</returns>
+        public Tunnel CreateTunnel(int localPort, string remoteHost, int remotePort)
+        {
+            return Tunnel.Create(this, localPort, DeviceId, remoteHost, remotePort);
+        }
 
-		/// <summary>
-		/// Finalizer.
-		/// </summary>
-		~DeviceConnection()
-		{
-			Dispose(false);
-		}
+        ///// <summary>
+        ///// Closes the device connection.
+        ///// </summary>
+        //public void Close()
+        //{
+        //    Dispose();
+        //}
 
-		/// <summary>
-		/// Performs the actual disposing of the device connection and the underlying data structure.
-		/// </summary>
-		/// <param name="disposing"></param>
-		protected virtual void Dispose(bool disposing)
-		{
-			if (disposed)
-			{
-				return;
-			}
+        #region IDisposable
 
-			Log.Write("DeviceConnection.Dispose({0})", disposing);
+        bool disposed = false;
 
-			if (disposing)
-			{
-				lock (deviceStreams)
-				{
-					while (deviceStreams.Count > 0)
-					{
-						deviceStreams[0].Dispose();
-					}
-				}
+        /// <summary>
+        /// Disposes the device connection.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-				lock (tunnels)
-				{
-					while (tunnels.Count > 0)
-					{
-						tunnels[0].Dispose();
-					}
-				}
+        /// <summary>
+        /// Finalizer.
+        /// </summary>
+        ~DeviceConnection()
+        {
+            Dispose(false);
+        }
 
-				Owner.Unregister(this);
-			}
+        /// <summary>
+        /// Performs the actual disposing of the device connection and the underlying data structure.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
 
-			disposed = true;
-		}
+            Log.Write("DeviceConnection.Dispose({0})", disposing);
 
-		#endregion
+            if (disposing)
+            {
+                lock (deviceStreams)
+                {
+                    while (deviceStreams.Count > 0)
+                    {
+                        deviceStreams[0].Dispose();
+                    }
+                }
 
-		/// <summary>
-		/// Creates a string representing the DeviceConnection.
-		/// </summary>
-		/// <returns></returns>
-		public override string ToString()
-		{
-			return string.Format("{0}{1}@{2}{3}", "{", Owner.ToString(), DeviceId, "}");
-		}
+                lock (tunnels)
+                {
+                    while (tunnels.Count > 0)
+                    {
+                        tunnels[0].Dispose();
+                    }
+                }
 
-		string GetAbsoluteUrl(string resource)
-		{
-			if (resource.StartsWith("/"))
-			{
-				return DeviceId + resource;
-			}
-			else
-			{
-				return DeviceId + "/" + resource;
-			}
-		}
+                Owner.Unregister(this);
+            }
 
-		#region Collection management
+            disposed = true;
+        }
 
-		internal void Register(DeviceStream deviceStream)
-		{
-			lock (deviceStreams)
-			{
-				Log.Write("DeviceConnnection.Register<NabtoStream>()");
+        #endregion
 
-				deviceStreams.Add(deviceStream);
-			}
-		}
+        /// <summary>
+        /// Creates a string representing the DeviceConnection.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0}{1}@{2}{3}", "{", Owner.ToString(), DeviceId, "}");
+        }
 
-		internal void Unregister(DeviceStream deviceStream)
-		{
-			lock (deviceStreams)
-			{
-				Log.Write("DeviceConnnection.Unregister<NabtoStream>()");
+        string GetAbsoluteUrl(string resource)
+        {
+            if (resource.StartsWith("/"))
+            {
+                return DeviceId + resource;
+            }
+            else
+            {
+                return DeviceId + "/" + resource;
+            }
+        }
 
-				deviceStreams.Remove(deviceStream);
+        #region Collection management
 
-				CheckForImplicitDispose();
-			}
-		}
+        internal void Register(DeviceStream deviceStream)
+        {
+            lock (deviceStreams)
+            {
+                Log.Write("DeviceConnnection.Register<NabtoStream>()");
 
-		internal void Register(Tunnel tunnel)
-		{
-			lock (tunnels)
-			{
-				Log.Write("DeviceConnnection.Register<Tunnel>()");
+                deviceStreams.Add(deviceStream);
+            }
+        }
 
-				tunnels.Add(tunnel);
-			}
-		}
+        internal void Unregister(DeviceStream deviceStream)
+        {
+            lock (deviceStreams)
+            {
+                Log.Write("DeviceConnnection.Unregister<NabtoStream>()");
 
-		internal void Unregister(Tunnel tunnel)
-		{
-			lock (tunnels)
-			{
-				Log.Write("DeviceConnnection.Unregister<Tunnel>()");
+                deviceStreams.Remove(deviceStream);
 
-				tunnels.Remove(tunnel);
+                CheckForImplicitDispose();
+            }
+        }
 
-				CheckForImplicitDispose();
-			}
-		}
+        internal void Register(Tunnel tunnel)
+        {
+            lock (tunnels)
+            {
+                Log.Write("DeviceConnnection.Register<Tunnel>()");
 
-		void CheckForImplicitDispose()
-		{
-			if (CreatedImplicitly)
-			{
-				lock (deviceStreams)
-				{
-					if (deviceStreams.Count == 0)
-					{
-						lock (tunnels)
-						{
-							if (tunnels.Count == 0)
-							{
-								Log.Write("DeviceConnection.CheckForImplicitDispose() -> Dispose()");
+                tunnels.Add(tunnel);
+            }
+        }
 
-								Dispose();
-							}
-						}
-					}
-				}
-			}
-		}
+        internal void Unregister(Tunnel tunnel)
+        {
+            lock (tunnels)
+            {
+                Log.Write("DeviceConnnection.Unregister<Tunnel>()");
 
-		#endregion
-	}
+                tunnels.Remove(tunnel);
+
+                CheckForImplicitDispose();
+            }
+        }
+
+        void CheckForImplicitDispose()
+        {
+            if (CreatedImplicitly)
+            {
+                lock (deviceStreams)
+                {
+                    if (deviceStreams.Count == 0)
+                    {
+                        lock (tunnels)
+                        {
+                            if (tunnels.Count == 0)
+                            {
+                                Log.Write("DeviceConnection.CheckForImplicitDispose() -> Dispose()");
+
+                                Dispose();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion
+    }
 }
