@@ -1,8 +1,6 @@
 # dotnet-client-api
 
-THIS IS WIP
-
-This will be the new dotnet client api.
+The .NET client api is a wrapper library on top of the native nabto client library.
 
 
 ## Using the Nabto Client .NET library.
