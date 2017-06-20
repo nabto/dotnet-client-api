@@ -27,3 +27,12 @@ dotnet restore
 dotnet build -c Release
 dotnet pack -c Release
 ```
+
+
+## Developing
+
+A crossplatform compilation environment can be started with the command 
+
+```
+docker run -t -i -v \`pwd\`:/source microsoft/dotnet bash
+```
