@@ -156,6 +156,11 @@ namespace Nabto.Client.Interop.Win32
             return (NabtoStatus)interopAdapter.nabtoSetStaticResourceDir(resourceDirectory);
         }
 
+        public NabtoStatus nabtoInstallDefaultStaticResources(string resourceDirectory)
+        {
+            return (NabtoStatus)interopAdapter.nabtoInstallDefaultStaticResources(resourceDirectory);
+        }
+
         public NabtoStatus nabtoSetOption(string name, string value)
         {
             return (NabtoStatus)interopAdapter.nabtoSetOption(name, value);

@@ -52,12 +52,12 @@ namespace Nabto.Client
                 throw new NabtoClientException(NabtoStatus.Failed, "Only one instance of NabtoClient may exist in a process.");
             }
 
-            InitStaticResourceDir();
-            
             if (callStartup)
             {
                 Startup();
             }
+
+            InitStaticResourceDir();
         }
 
         /// <summary>
@@ -554,11 +554,8 @@ namespace Nabto.Client
         }
 
         private void InitStaticResourceDir() {
-            var resourceDir = Interop.NativeLibrary.GetStaticResourceDir();
-            
-            if (resourceDir != null) {
-                PlatformAdapter.Instance.nabtoSetStaticResourceDir(resourceDir);
-            }
+            // install static resources
+            PlatformAdapter.Instance.nabtoInstallDefaultStaticResources();
         }
 
         #endregion

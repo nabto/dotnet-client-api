@@ -165,6 +165,11 @@ namespace Nabto.Client.Interop
             return NabtoStatusHandler(concretePlatformAdapter.nabtoSetStaticResourceDir(resourceDirectory), "nabtoSetStaticResourceDir");
         }
 
+        public NabtoStatus nabtoInstallDefaultStaticResources(string resourceDirectory = null)
+        {
+            return NabtoStatusHandler(concretePlatformAdapter.nabtoInstallDefaultStaticResources(resourceDirectory), "nabtoInstallDefaultStaticResources");
+        }
+
         public NabtoStatus nabtoSetOption(string name, string value)
         {
             return NabtoStatusHandler(concretePlatformAdapter.nabtoSetOption(name, value), "nabtoSetOption");

@@ -61,6 +61,7 @@ namespace Nabto.Client.Interop
         NabtoStatus nabtoShutdown();
         NabtoStatus nabtoSetApplicationName(string applicationName);
         NabtoStatus nabtoSetStaticResourceDir(string resourceDirectory);
+        NabtoStatus nabtoInstallDefaultStaticResources(string resourceDirectory = null);
         NabtoStatus nabtoSetOption(string name, string value);
         //NabtoStatus nabtoLookupExistingProfile(out string email);
         NabtoStatus nabtoCreateSelfSignedProfile(string email, string password);    

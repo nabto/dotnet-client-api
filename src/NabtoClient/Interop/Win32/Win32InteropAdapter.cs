@@ -309,6 +309,11 @@ namespace Nabto.Client.Interop.Win32
             return Win32NativeMethods.nabtoSetStaticResourceDir(resourceDirectory);
         }
 
+        public int nabtoInstallDefaultStaticResources(string resourceDirectory)
+        {
+            return Win32NativeMethods.nabtoInstallDefaultStaticResources(resourceDirectory);
+        }
+
         public int nabtoSetOption(string name, string value)
         {
             return Win32NativeMethods.nabtoSetOption(name, value);

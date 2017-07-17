@@ -63,23 +63,5 @@ namespace Nabto.Client.Interop
         {
             get { return platform; }
         }
-
-        public static string GetStaticResourceDir()
-        {
-            var assemblyPath = GetAssemblyDirectory();
-
-            if (File.Exists(Path.Combine(assemblyPath, "share/nabto/roots/ca.crt"))) {
-                // Available in share beside <dll>
-                return Path.Combine(assemblyPath, "share/nabto");
-            } else if (File.Exists(Path.Combine(assemblyPath, "../../../share/nabto/roots/ca.crt"))) {
-                // Available in share beside dll in runtimes/<rid>/native/<dll>
-                return Path.Combine(assemblyPath, "../../../share/nabto");
-            } else if (File.Exists(Path.Combine(assemblyPath, "../../../content/share/nabto/roots/ca.crt"))) {
-                // Available in content/share beside runtimes/<rid>/native/<dll> in nuget package
-                return Path.Combine(assemblyPath, "../../../content/share/nabto");
-            } else {
-                return null;
-            }
-        }
     }
 }

@@ -129,6 +129,9 @@ namespace Nabto.Client.Interop.Win32
         extern static public int nabtoSetStaticResourceDir(string resourceDirectory);
 
         [DllImport("nabto_client_api", CharSet = CharSet.Ansi)]
+        extern static public int nabtoInstallDefaultStaticResources(string resourceDirectory);
+
+        [DllImport("nabto_client_api", CharSet = CharSet.Ansi)]
         extern static public int nabtoSetOption(string name, string value);
 
         //[DllImport("nabto_client_api")]
