@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NDesk.Options;
+using Microsoft.Extensions.CommandLineUtils;
 using System.Diagnostics;
 
 namespace StreamEcho
@@ -13,22 +13,27 @@ namespace StreamEcho
 	{
 		static void Main(string[] args)
 		{
-			int datasize = 1024;
+			int dataSize = 1024;
 			string query = "echo.u.nabto.net";
-			var p = new OptionSet() {
-			    { "q=", "Device id to connect to.", v => query = (v) },
-				{ "datasize=", "Number of bytes to echo", v => int.TryParse((v), out datasize) },
-			};
-			try
-			{
-				p.Parse(args);
-			}
-			catch (OptionException e) {
-				Console.WriteLine(e.Message);
-				return;
-	
-			}
-			test(query, datasize);
+            var app = new CommandLineApplication();
+            app.Name = "StreamEcho";
+            app.HelpOption("-h|--help");
+            var queryOption = app.Option("-q", "Device id to connect to.", CommandOptionType.SingleValue);
+            var dataSizeOption = app.Option("--datasize", "Number of bytes to echo", CommandOptionType.SingleValue);
+
+            app.OnExecute(() => {
+                    if (queryOption.HasValue()) {
+                        query = queryOption.Value();
+                    }
+                    
+                    if (dataSizeOption.HasValue()) {
+                        int.TryParse(dataSizeOption.Value(), out dataSize);
+                    }
+                    test(query, dataSize);
+                    return 0;
+                });
+
+            app.Execute(args);
 		}
 
 		static async void test(string deviceid, int datasize)
