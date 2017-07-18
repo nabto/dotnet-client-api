@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NabtoTunnelManager.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MainViewWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="MainViewSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">706, 562</Value>
+    </Setting>
+    <Setting Name="MainViewLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-32000, -32000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
