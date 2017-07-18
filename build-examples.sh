@@ -16,3 +16,13 @@ cd $DIR/examples/csharp/StreamEcho
 
 dotnet restore
 dotnet build
+
+cd $DIR/examples/csharp/StreamTerminal
+
+dotnet restore
+dotnet build
+
+cd $DIR/examples/csharp/Tunnel
+
+dotnet restore
+dotnet build
