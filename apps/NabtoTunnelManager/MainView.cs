@@ -59,9 +59,9 @@ namespace NabtoTunnelManager
 			{
 				nabto = new NabtoClient();
 			}
-			catch
+			catch (Exception exc)
 			{
-				MessageBox.Show("Unable to load uNabto client API!");
+				MessageBox.Show("Unable to load Nabto client API!");
 				return;
 			}
 
