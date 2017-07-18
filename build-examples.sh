@@ -11,3 +11,8 @@ cd $DIR/examples/csharp/RPC
 
 dotnet restore
 dotnet build
+
+cd $DIR/examples/csharp/StreamEcho
+
+dotnet restore
+dotnet build
