@@ -6,9 +6,13 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd $DIR/src/NabtoClient
 
+mkdir -p $DIR/artifacts
+
 dotnet restore
 dotnet build -c Release
-dotnet pack -c Release
+dotnet pack -o ../../artifacts -c Release
+
+## run tests which does not rely on the build NabtoClient nuget package
 
 cd $DIR/src/NabtoClientDemo
 
@@ -22,4 +26,6 @@ dotnet publish -f netcoreapp1.1
 dotnet restore -r debian.8-x64
 dotnet build -r debian.8-x64
 dotnet publish -r debian.8-x64 -f netcoreapp1.1
+
+
 
