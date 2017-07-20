@@ -2,12 +2,9 @@ Nabto Client library for .NET projects as a Nuget package.
 
 http://www.nabto.com
 
-Support for .NET4.0 and .NET4.5.
+Support for .NET4.5 and .Net core 1.5.
 
-Includes the Nabto.Client interface and copies Nabto Client library dll and assets to the active projects debug and release folders.
-
-If you get the **"AuthorizationManager check failed"** warning while installing this package, you need to use the "Set-ExecutionPolicy unrestricted" to support running PowerShell scripts from Nuget.
-NOTE: PowerShell scripts run by Visual Studio will not execute on a network attached drive.
+Includes the Nabto.Client interface and copies Nabto Client library dll to the active projects debug and release folders. If you are running .NET4.5 you will need to run publish to get the library published to the output folder.
 
 
 Example of using the Nabto Client to fetch a Nabto URL:
