@@ -16,8 +16,36 @@ namespace Nabto.Client.Interop.Win32
     {
         Win32InteropAdapter interopAdapter;
 
+        static void AddEnvironmentPaths(IEnumerable<string> paths)
+        {
+            var path = new[] { Environment.GetEnvironmentVariable("PATH") ?? string.Empty };
+
+            string newPath = string.Join(Path.PathSeparator.ToString(), path.Concat(paths));
+
+            Environment.SetEnvironmentVariable("PATH", newPath);
+        }
+
         public Win32PlatformAdapter()
         {
+            // on net45 search for dll in runtimes/platform does not work so this will help the dll search by adding the path to the PATH environment variable.
+
+            var bits = PlatformInformation.Bits;
+            var assembly = typeof(Win32InteropAdapter).GetTypeInfo().Assembly;
+            var assemblyPath = Path.GetDirectoryName(assembly.Location);
+            
+            var paths = new List<String>();
+            paths.Add(Path.Combine(assemblyPath, "runtimes", "linux-x64", "native"));
+            paths.Add(Path.Combine(assemblyPath, "runtimes", "osx-x64", "native"));
+            if (bits == PlatformBits.Bits32)
+            {
+                paths.Add(Path.Combine(assemblyPath, "runtimes", "win", "native"));
+            } else
+            {
+                paths.Add(Path.Combine(assemblyPath, "runtimes", "win-x64", "native"));
+            }
+
+            AddEnvironmentPaths(paths);
+
             interopAdapter = new Win32InteropAdapter();
         }
 

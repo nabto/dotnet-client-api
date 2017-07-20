@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netstandard1.5;net45</TargetFrameworks>
@@ -7,7 +7,7 @@
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>Nabto Aps</Company>
     <Authors>Nabto</Authors>
-    <Version>4.1.1-rc1</Version>
+    <Version>4.1.1</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NabtoClientNative" Version="4.1.1-rc1" />
+    <PackageReference Include="NabtoClientNative" Version="4.1.1" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
 
