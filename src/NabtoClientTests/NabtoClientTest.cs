@@ -24,5 +24,16 @@ namespace NabtoClientTests
             }
             
         }
+        [Fact]
+        public void TestCreateAndUseCertificate()
+        {
+            {
+                string profile = Guid.NewGuid().ToString();
+                NabtoClient nabto = new NabtoClient();
+                nabto.CreateSelfSignedProfile(profile, "bar");
+                Session session = nabto.CreateSession(profile, "bar");
+                nabto.Dispose();
+            }
+        }
     }
 }
