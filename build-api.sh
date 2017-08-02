@@ -4,6 +4,16 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+
+## run unit tests
+
+cd $DIR/src/NabtoClientTests || exit 1
+dotnet restore || exit 1
+dotnet test || exit 1
+
+
+## build nuget package
+
 cd $DIR/src/NabtoClient
 
 mkdir -p $DIR/artifacts
@@ -11,6 +21,7 @@ mkdir -p $DIR/artifacts
 dotnet restore || exit 1
 dotnet build -c Release || exit 1
 dotnet pack -o ../../artifacts -c Release || exit 1
+
 
 ## run tests which does not rely on the build NabtoClient nuget package
 

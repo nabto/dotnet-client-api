@@ -57,7 +57,6 @@ namespace Nabto.Client
                 Startup();
             }
 
-            InitStaticResourceDir();
         }
 
         /// <summary>
@@ -263,6 +262,9 @@ namespace Nabto.Client
             PlatformAdapter.Instance.nabtoStartup(HomeDirectory);
 
             started = true;
+
+            InitStaticResourceDir();
+
         }
 
         /// <summary>
