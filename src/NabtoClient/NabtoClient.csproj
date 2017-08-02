@@ -7,7 +7,7 @@
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <Company>Nabto Aps</Company>
     <Authors>Nabto</Authors>
-    <Version>4.1.1</Version>
+    <Version>4.1.2</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
   </PropertyGroup>
