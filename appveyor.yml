@@ -5,7 +5,7 @@ build_script:
 - cmd: >-
     dotnet restore apps\NabtoTunnelManager
 
-    msbuild /p:Configuration=Release /target:Publish apps\NabtoTunnelManager /p:PublishDir=NabtoTunnelManager /p:OutputPath=%APPVEYOR_BUILD_FOLDER%\artifacts\
+    msbuild /p:Configuration=Release /target:Publish apps\NabtoTunnelManager /p:PublishDir=%APPVEYOR_BUILD_FOLDER%\artifacts\NabtoTunnelManager
 artifacts:
 - path: artifacts\NabtoTunnelManager
 deploy:
