@@ -1,0 +1,23 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
+build_script:
+- cmd: >-
+    dotnet restore apps\NabtoTunnelManager
+
+    msbuild /p:Configuration=Release /target:Publish apps\NabtoTunnelManager /p:PublishDir=NabtoTunnelManager /p:OutputPath=%APPVEYOR_BUILD_FOLDER%\artifacts\
+artifacts:
+- path: artifacts\NabtoTunnelManager
+deploy:
+  release: tunnel-manager-$(appveyor_build_version)
+  description: ''
+  provider: GitHub
+  auth_token:
+    secure: /ZS7w9J1/2S5ise/ZkEA/aig3ASgfNwS6uiPCMHlg4s6AH1+RPF0UY1FcP784Gyv
+  artifact: /.*\.zip/
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: true  
+
