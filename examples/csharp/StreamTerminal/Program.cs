@@ -80,19 +80,6 @@ namespace StreamTerminal
 
                                 if (Console.KeyAvailable) // user input?
                                 {
-                                    if (stringBuilder.Length > 0)
-                                    {
-                                        var s = stringBuilder.ToString(); // text from user
-                                        stringBuilder.Clear();
-
-                                        var b = encoding.GetBytes(s); // convert to byte array
-                                        stream.Write(b, 0, b.Length); // ...and send it to the device
-
-                                        if (localEcho)
-                                        {
-                                            Console.Write(s);
-                                        }
-                                    }
 
                                     while (Console.KeyAvailable) // read all user input
                                     {
@@ -112,6 +99,21 @@ namespace StreamTerminal
                                             stringBuilder.Append(key.KeyChar); // gather all characters from user
                                         }
                                     }
+
+                                    if (stringBuilder.Length > 0)
+                                    {
+                                        var s = stringBuilder.ToString(); // text from user
+                                        stringBuilder.Clear();
+
+                                        var b = encoding.GetBytes(s); // convert to byte array
+                                        stream.Write(b, 0, b.Length); // ...and send it to the device
+
+                                        if (localEcho)
+                                        {
+                                            Console.Write(s);
+                                        }
+                                    }
+
                                 }
 
                                 Thread.Sleep(1);
