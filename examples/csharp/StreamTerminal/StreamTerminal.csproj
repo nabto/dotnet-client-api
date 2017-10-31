@@ -4,6 +4,6 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NabtoClient" Version="4.1.1" />
+    <PackageReference Include="NabtoClient" Version="4.1.5" />
   </ItemGroup>
 </Project>
