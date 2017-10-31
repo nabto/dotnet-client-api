@@ -46,8 +46,6 @@ namespace StreamTerminal
                 throw new Exception("Invalid device ID");
             }
 
-            bool enterEchoService = deviceId == "echo.u.nabto.net" ? true : false;
-
             Console.WriteLine("Connecting...");
 
             try
@@ -70,14 +68,6 @@ namespace StreamTerminal
                             var stringBuilder = new StringBuilder();
 
                             Console.WriteLine("Connected. Press ctrl+¨ to disconnect.");
-
-                            // Automatically enter echo service
-                            if (enterEchoService)
-                            {
-                                stringBuilder.Append("echo");
-                                stringBuilder.Append(Environment.NewLine);
-                                Console.WriteLine("Entering echo service");
-                            }
 
                             while (run)
                             {
