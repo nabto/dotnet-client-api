@@ -1,4 +1,4 @@
-﻿using Nabto.Client;
+using Nabto.Client;
 using System;
 
 namespace FetchUrl

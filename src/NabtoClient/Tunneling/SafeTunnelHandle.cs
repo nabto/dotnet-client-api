@@ -1,4 +1,4 @@
-﻿using Nabto.Client.Interop;
+using Nabto.Client.Interop;
 using Nabto.Client.Streaming;
 using System;
 

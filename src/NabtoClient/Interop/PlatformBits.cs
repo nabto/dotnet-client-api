@@ -1,4 +1,4 @@
-﻿namespace Nabto.Client.Interop
+namespace Nabto.Client.Interop
 {
     /// <summary>
     /// The CPU bus widths supported by the client API.

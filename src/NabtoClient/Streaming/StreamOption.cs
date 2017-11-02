@@ -1,4 +1,4 @@
-﻿namespace Nabto.Client.Streaming
+namespace Nabto.Client.Streaming
 {
     /// <summary>
     /// 

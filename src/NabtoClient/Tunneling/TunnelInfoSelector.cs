@@ -1,4 +1,4 @@
-﻿namespace Nabto.Client.Tunneling
+namespace Nabto.Client.Tunneling
 {
     enum TunnelInfoSelector
     {

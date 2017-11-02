@@ -1,4 +1,4 @@
-﻿using Nabto.Client.Streaming;
+using Nabto.Client.Streaming;
 using Nabto.Client.Tunneling;
 using System;
 using System.Diagnostics;

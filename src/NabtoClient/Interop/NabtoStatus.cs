@@ -1,4 +1,4 @@
-﻿namespace Nabto.Client.Interop
+namespace Nabto.Client.Interop
 {
     internal enum NabtoStatus
     {

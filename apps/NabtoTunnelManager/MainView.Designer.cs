@@ -1,4 +1,4 @@
-﻿namespace NabtoTunnelManager
+namespace NabtoTunnelManager
 {
 	partial class MainView
 	{

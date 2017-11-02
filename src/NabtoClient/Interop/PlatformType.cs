@@ -1,4 +1,4 @@
-﻿namespace Nabto.Client.Interop
+namespace Nabto.Client.Interop
 {
     /// <summary>
     /// The platform types (operating system APIs) supported by the client API.
