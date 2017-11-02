@@ -80,3 +80,8 @@ local develpoment version.
 
 The NabtoTunnelManager is a gui tunnelling manager for TCP over Nabto
 streaming tunnels. It can be used to manage e.g. rtsp, ssh, http, ... tunnels.
+
+
+## Code style
+
+4 spaces and \n as newline.
