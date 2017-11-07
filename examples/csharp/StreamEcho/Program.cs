@@ -45,7 +45,7 @@ namespace StreamEcho
                 Console.WriteLine("created stream");
                 Task<int> read = Reader(stream);
                 Writer(stream, datasize);
-                stream.CloseWrite();
+                stream.Close();
                 int r = await read;
                 Console.WriteLine("Test done read {0}bytes", r);
             }
