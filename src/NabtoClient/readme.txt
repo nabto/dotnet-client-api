@@ -22,7 +22,7 @@ namespace NabtoExample
 
             using (Session session = nabto.CreateSession("guest", "123456"))
             {
-                String url = "nabto://weather.u.nabto.net/wind_speed.json?";
+                String url = "nabto://demo.nabto.net/wind_speed.json?";
                 Console.WriteLine("Fetching resource...");
                 string result = session.FetchUrlAsString(url);
                 Console.Write(result);
