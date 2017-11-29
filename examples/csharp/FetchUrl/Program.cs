@@ -10,7 +10,7 @@ namespace FetchUrl
             if (args.Length != 3 && args.Length != 1)
             {
                 Console.WriteLine("Usage:   FetchUrl [<email> <password>] <device_id/request>");
-                Console.WriteLine("Example: FetchUrl.exe weather.u.nabto.net/wind_speed.json?");
+                Console.WriteLine("Example: FetchUrl.exe demo.nabto.net/wind_speed.json?");
                 Console.WriteLine("         Default user is 'guest'.");
                 Environment.Exit(1);
             }
