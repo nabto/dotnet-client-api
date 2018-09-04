@@ -365,8 +365,8 @@ namespace Nabto.Client
         /// Retrieve the RSA public key fingerprint of the specified certificate.
         /// </summary>
         /// <param name="certId">The identification of the cert to be able to locate it in the cert store.</param>
-        /// <param name="password">The password associated with the account to create.</param>
-        public void GetFingerprint(string certId, out string fingerprint)
+        /// <param name="fingerprint">16 byte array containing the public key fingerprint.</param>
+        public void GetFingerprint(string certId, out byte[] fingerprint)
         {
             if (certId == null)
             {
