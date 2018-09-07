@@ -65,7 +65,7 @@ namespace Nabto.Client.Interop
         NabtoStatus nabtoSetOption(string name, string value);
         //NabtoStatus nabtoLookupExistingProfile(out string email);
         NabtoStatus nabtoCreateSelfSignedProfile(string email, string password);    
-        NabtoStatus nabtoGetFingerprint(string certId, out string fingerprint);    
+        NabtoStatus nabtoGetFingerprint(string certId, out byte[] fingerprint);    
         NabtoStatus nabtoCreateProfile(string email, string password);    
         NabtoStatus nabtoSignup(string email, string password);
         NabtoStatus nabtoResetAccountPassword(string email);

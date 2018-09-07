@@ -204,7 +204,7 @@ namespace Nabto.Client.Interop.Win32
             return (NabtoStatus)interopAdapter.nabtoCreateSelfSignedProfile(email, password);
         }
 
-        public NabtoStatus nabtoGetFingerprint(string certId, out string fingerprint)
+        public NabtoStatus nabtoGetFingerprint(string certId, out byte[] fingerprint)
         {
             return (NabtoStatus)interopAdapter.nabtoGetFingerprint(certId, out fingerprint);
         }

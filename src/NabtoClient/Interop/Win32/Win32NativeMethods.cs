@@ -141,7 +141,7 @@ namespace Nabto.Client.Interop.Win32
         extern static public int nabtoCreateSelfSignedProfile(string email, string password);
 
         [DllImport("nabto_client_api", CharSet = CharSet.Ansi)]
-        extern static public int nabtoGetFingerprint(string certId, out IntPtr fingerprint);
+        extern static public int nabtoGetFingerprint(string certId, IntPtr fingerprint);
 
         [DllImport("nabto_client_api", CharSet = CharSet.Ansi)]
         extern static public int nabtoCreateProfile(string email, string password);

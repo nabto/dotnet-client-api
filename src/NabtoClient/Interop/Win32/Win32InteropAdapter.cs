@@ -324,18 +324,33 @@ namespace Nabto.Client.Interop.Win32
             return Win32NativeMethods.nabtoCreateSelfSignedProfile(email, password);
         }
 
-        public int nabtoGetFingerprint(string certId, out string fingerprint)
+        public int nabtoGetFingerprint(string certId, out byte[] fingerprint)
         {
-            IntPtr nativeFingerprintBuffer;
-            var status = Win32NativeMethods.nabtoGetFingerprint(certId, out nativeFingerprintBuffer);
-            if (status == NABTO_OK)
+            int status;
+            fingerprint = null;
+            IntPtr unmanagedFingerprintBuffer = IntPtr.Zero;
+
+            try
             {
-                fingerprint = MoveString(nativeFingerprintBuffer);
+                unmanagedFingerprintBuffer = Marshal.AllocHGlobal(16);
+
+                status = Win32NativeMethods.nabtoGetFingerprint(certId, unmanagedFingerprintBuffer);
+
+                if (status == NABTO_OK)
+                {
+                    fingerprint = new byte[16];
+                    Marshal.Copy(unmanagedFingerprintBuffer, fingerprint, 0, 16);
+                }
             }
-            else
+        
+            finally
             {
-                fingerprint = null;
+                if (unmanagedFingerprintBuffer != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(unmanagedFingerprintBuffer);
+                }
             }
+
             return status;
         }
 

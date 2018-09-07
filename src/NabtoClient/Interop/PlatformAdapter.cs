@@ -180,7 +180,7 @@ namespace Nabto.Client.Interop
             return NabtoStatusHandler(concretePlatformAdapter.nabtoCreateSelfSignedProfile(email, password), "nabtoCreateSelfSignedProfile");
         }
 
-        public NabtoStatus nabtoGetFingerprint(string certId, out string fingerprint) {
+        public NabtoStatus nabtoGetFingerprint(string certId, out byte[] fingerprint) {
             return NabtoStatusHandler(concretePlatformAdapter.nabtoGetFingerprint(certId, out fingerprint), "nabtoGetFingerprint");
         }
         
